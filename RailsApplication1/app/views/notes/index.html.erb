@@ -1,0 +1,10 @@
+<ul>
+<% @notes.each do |note| %>
+  <li><%= note.title %></li>
+<% end -%>
+</ul>
+<% if @notes.empty? %>
+  No notes exist
+<% end -%>
+
+<%= link_to "Add new note", new_note_path %>
