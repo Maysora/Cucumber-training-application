@@ -13,6 +13,8 @@ module NavigationHelpers
 
     when /^the "([^"]*)" note page$/
       note_path Note.find_by_title($1)
+    when /^the "([^"]*)" note edit page$/
+      edit_note_path Note.find_by_title($1)
 
 
     # Add more mappings here.

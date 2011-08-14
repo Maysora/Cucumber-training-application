@@ -8,6 +8,12 @@ Given /^I have (\d+) notes?$/ do |num|
   end
 end
 
+Given /^I have the following notes?:$/ do |table|
+  table.hashes.each do |note_hash|
+    Note.create! note_hash
+  end
+end
+
 Then /^I should see (\d+) notes? title$/ do |num|
   notes = Note.all
   notes.length.should == num.to_i
