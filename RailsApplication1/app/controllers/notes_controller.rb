@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  before_filter :prepare_note, :only => [:show, :edit, :update, :destroy]
   def index
     @notes = Note.all
   end
@@ -18,20 +19,28 @@ class NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find params[:id]
   end
 
   def edit
-    @note = Note.find params[:id]
   end
 
   def update
-    @note = Note.find params[:id]
     if @note.update_attributes params[:note]
       redirect_to note_path(@note)
     else
       flash.now[:error] = "Error: #{@note.errors.full_messages.join('<br />')}"
       render :action => "edit"
     end
+  end
+
+  def destroy
+    @note.destroy
+    redirect_to root_path
+  end
+
+private
+
+  def prepare_note
+    @note = Note.find params[:id]
   end
 end
