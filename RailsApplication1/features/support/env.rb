@@ -48,3 +48,16 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+
+module ActionViewHelper
+  def self.extended(base)
+    base.class.class_eval do
+      include ActionView::Helpers
+    end
+#    Or if you prefer to only include sanitize helper, use the following 2 lines instead
+#    base.class.extend ActionView::Helpers::SanitizeHelper::ClassMethods
+#    base.extend ActionView::Helpers::SanitizeHelper
+  end
+end
+
+World(ActionViewHelper, ApplicationHelper)

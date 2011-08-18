@@ -16,3 +16,23 @@ Feature: Add Note
     And I press "Submit"
     Then I should have 1 note
     And I should be on the "new note" note page
+
+  Scenario: Adding new note with multiline content
+    Given I am on the new note page
+    When I fill in "Title" with "new multiline note"
+    And I fill in "Content" with
+      """
+      Lorem
+      Ipsum
+
+      Dolololol
+      """
+    And I press "Submit"
+    Then I should be on the "new multiline note" note page
+    And I should see formatted html
+      """
+      Lorem
+      Ipsum
+
+      Dolololol
+      """

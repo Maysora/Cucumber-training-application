@@ -1,11 +1,9 @@
 Given /^I have (\d+) notes?$/ do |num|
   Note.destroy_all
-  num.to_i.times do |i|
-    Note.create!(
-      :title => "Test Note #{i} #{Time.now.to_i}",
-      :content => "Lorem Ipsum dolololol"
-    )
-  end
+  Given "I have the following notes:", table(
+    [%w(title content)] +
+    num.to_i.times.map{|i| ["Test Note #{i} #{Time.now.to_i}", "Lorem Ipsum dolololol"]}
+  )
 end
 
 Given /^I have the following notes?:$/ do |table|
