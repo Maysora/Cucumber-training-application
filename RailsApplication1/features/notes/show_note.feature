@@ -9,5 +9,5 @@ Feature: Show Note
       | Speed Star | The second album |
     And I am on the home page
     When I follow "Speed Star"
-    Then I should be on the "Speed Star" note page
+    Then I should be on the note page with title: "Speed Star"
     And I should see "The second album"

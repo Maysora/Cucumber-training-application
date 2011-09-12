@@ -11,12 +11,6 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
-    when /^the "([^"]*)" note page$/
-      note_path Note.find_by_title($1)
-    when /^the "([^"]*)" note edit page$/
-      edit_note_path Note.find_by_title($1)
-
-
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -25,9 +19,15 @@ module NavigationHelpers
 
     else
       begin
-        page_name =~ /^the (.*) page$/
+        page_name =~ /^the (.*) page( with (.*))?$/
+        conditions = $3
         path_components = $1.split(/\s+/)
-        self.send(path_components.push('path').join('_').to_sym)
+        if conditions.nil?
+          self.send(path_components.push('path').join('_').to_sym)
+        else
+          self.send path_components.push('path').join('_').to_sym,
+            path_components[-2].classify.constantize.first(:conditions => conditions.gsub(/:\s?/, " = ").gsub(/,\s?/, " AND "))
+        end
       rescue NoMethodError, ArgumentError
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"

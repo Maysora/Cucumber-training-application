@@ -15,4 +15,4 @@ Feature: Add Note
     And I fill in "Content" with "Lorem Ipsum Dolololol"
     And I press "Submit"
     Then I should have 1 note
-    And I should be on the "new note" note page
+    And I should be on the note page with title: "new note"

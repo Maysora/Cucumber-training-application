@@ -9,14 +9,14 @@ Feature: Edit Note
       | existing note | lorem ipsum dolololol |
 
   Scenario: Going to edit note page
-    Given I am on the "existing note" note page
+    Given I am on the note page with title: "existing note"
     When I follow "Edit"
-    Then I should be on the "existing note" note edit page
+    Then I should be on the edit note page with title: "existing note"
 
   Scenario: Editing a note
-    Given I am on the "existing note" note edit page
+    Given I am on the edit note page with title: "existing note"
     When I fill in "Title" with "updated note"
     And I fill in "Content" with "the new content"
     And I press "Submit"
-    Then I should be on the "updated note" note page
+    Then I should be on the note page with title: "updated note"
     And I should see "the new content"
