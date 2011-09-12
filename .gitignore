@@ -8,3 +8,5 @@
 /WriteBoard/Gemfile.lock
 /WriteBoard/nbproject
 /WriteBoard/config/database.yml
+/RailsApplication1/Gemfile.lock
+/WriteBoard/db/schema.rb
