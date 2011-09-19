@@ -14,6 +14,8 @@ module NavigationHelpers
       new_user_registration_path
     when /^the sign in page$/
       new_user_session_path
+    when /^the edit profile page$/
+      edit_user_registration_path
 
     # the following are examples using path_to_pickle
 
