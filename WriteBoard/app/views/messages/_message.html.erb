@@ -11,4 +11,12 @@
   <div>
     <%= message.content %>
   </div>
+  <div>
+    <div>
+      <%= link_to "Reply", new_message_reply_path(message) if user_signed_in? %>
+    </div>
+    <div id="<%= "message_#{message.id}" %>_replies_container">
+      <%= render :partial => "/replies/reply", :collection => message.replies, :locals => {:message => message} %>
+    </div>
+  </div>
 </div>

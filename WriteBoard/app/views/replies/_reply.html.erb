@@ -1,0 +1,22 @@
+<div id="<%= "message_#{reply.id}" %>">
+  <div>
+    Reply by: <%= reply.author.email %>
+  </div>
+  <% if reply.author == current_user %>
+    <div>
+      <%= link_to "Edit", edit_reply_path(reply) %>
+      <%= link_to "Delete", reply_path(reply), :method => :delete %>
+    </div>
+  <% end -%>
+  <div>
+    <%= reply.content %>
+  </div>
+  <div>
+    <div>
+      <%= link_to "Reply", new_message_reply_path(reply) if user_signed_in? %>
+    </div>
+    <div id="<%= "message_#{reply.id}" %>_replies_container">
+      <%= render :partial => "/replies/reply", :collection => reply.replies %>
+    </div>
+  </div>
+</div>

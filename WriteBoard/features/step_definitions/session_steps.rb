@@ -1,3 +1,8 @@
+Given /^I am not signed in$/ do
+  Given "I am on the home page"
+  And "I follow \"Sign out\""
+end
+
 When /^I signed in(?: as #{capture_model})?(?: with #{capture_fields})?$/ do |user, fields|
   user = fetch_model(user) unless user.nil?
   fields = parse_fields(fields)

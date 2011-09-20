@@ -12,10 +12,12 @@ FactoryGirl.define do
     sequence :content do |n|
       "message number #{n}"
     end
-    factory :reply do
-      sequence :content do |n|
-        "reply number #{n}"
-      end
+  end
+  
+  factory :reply, :class => Message do
+    author
+    sequence :content do |n|
+      "reply number #{n}"
     end
   end
 end

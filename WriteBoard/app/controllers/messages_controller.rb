@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index]
   before_filter :prepare_messages, :only => [:index]
   before_filter :prepare_message, :only => [:edit, :update, :destroy]
 
