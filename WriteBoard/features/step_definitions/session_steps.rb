@@ -1,5 +1,5 @@
 When /^I signed in(?: as #{capture_model})?(?: with #{capture_fields})?$/ do |user, fields|
-  user = find_model(user) unless user.nil?
+  user = fetch_model(user) unless user.nil?
   fields = parse_fields(fields)
   email = user.try(:email) || fields["email"] || FactoryGirl.attributes_for(:user)[:email]
   password = fields["password"] || FactoryGirl.attributes_for(:user)[:password]

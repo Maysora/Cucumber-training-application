@@ -1,0 +1,14 @@
+<div id="<%= "message_#{message.id}" %>">
+  <div>
+    Author: <%= message.author.email %>
+  </div>
+  <% if message.author == current_user %>
+    <div>
+      <%= link_to "Edit", edit_message_path(message) %>
+      <%= link_to "Delete", message, :method => :delete %>
+    </div>
+  <% end -%>
+  <div>
+    <%= message.content %>
+  </div>
+</div>

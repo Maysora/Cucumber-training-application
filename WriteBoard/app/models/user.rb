@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable
 
+  has_many :messages, :foreign_key => "author_id"
+
   attr_accessible :email, :password, :password_confirmation
 
   def update_with_password(params={})

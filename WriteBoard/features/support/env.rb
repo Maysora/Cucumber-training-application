@@ -48,3 +48,15 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+
+module AdditionalPickleHelper
+  def fetch_model name, fields=nil
+    (fields.nil? && model?(name)) ? model(name) : find_model(name, fields)
+  end
+
+  def fetch_model! name, fields=nil
+    (fields.nil? && model?(name)) ? model!(name) : find_model!(name, fields)
+  end
+end
+
+World(AdditionalPickleHelper)
