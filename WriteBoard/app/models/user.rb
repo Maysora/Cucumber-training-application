@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable
 
-  has_many :messages, :foreign_key => "author_id"
+  has_many :messages, :foreign_key => "author_id", :dependent => :destroy
 
   attr_accessible :email, :password, :password_confirmation
 
