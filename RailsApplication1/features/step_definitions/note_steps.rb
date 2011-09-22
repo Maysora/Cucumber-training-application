@@ -1,5 +1,4 @@
 Given /^I have (\d+) notes?$/ do |num|
-  Note.destroy_all
   num.to_i.times do |i|
     Note.create!(
       :title => "Test Note #{i} #{Time.now.to_i}",
